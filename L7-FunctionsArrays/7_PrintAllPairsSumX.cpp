@@ -49,7 +49,7 @@ int main() {
 	int n = sizeof(a) / sizeof(int);
 	// (1,9) (2,8) (4,6)
 
-	printPairsOptimised(a, n, 10);
+	printPairs(a, n, 10);
 
 
 	return 0;
