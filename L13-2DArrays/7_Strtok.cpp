@@ -5,8 +5,6 @@ using namespace std;
 int main() {
 
 	char a[] = "Akshat_$$$%@@@@@@@Ankit@$#****######Rohit%#Niyam##@@@@@@";
-
-
 	// char *p = strtok(a, "_$%@#*");
 	char *p;
 
