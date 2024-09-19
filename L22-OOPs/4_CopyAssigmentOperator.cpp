@@ -1,0 +1,94 @@
+#include <iostream>
+using namespace std;
+//////////////// BLUEPRINT //////////////////////////
+class Car {
+public:
+	// All the variables are called as DATA MEMBERS
+	char name[100];
+	int price;
+	int model;
+	int seats;
+
+	Car() {
+		cout << "Inside Default Constructor\n";
+	}
+
+	Car(char*n, int p, int m, int s) {
+		cout << "Inside Parameterised Constructor\n";
+		strcpy(name, n);
+		price = p;
+		model = m;
+		seats = s;
+	}
+
+	Car(Car &X) {
+		cout << "Inside Copy Constructor\n";
+		strcpy(name, X.name);
+		price = X.price;
+		model = X.model;
+		seats = X.seats;
+	}
+
+	// 4. Copy Assignment Operator
+	void operator=(Car &X) {
+		cout << "Inside Copy Assignment\n";
+		strcpy(name, X.name);
+		price = X.price;
+		model = X.model;
+		seats = X.seats;
+	}
+
+	void print() {
+		cout << "Name   : " << name << endl;
+		cout << "Price  : " << price << endl;
+		cout << "Model  : " << model << endl;
+		cout << "Seats  : " << seats << endl << endl;
+	}
+};
+//////////////// BLUEPRINT //////////////////////////
+
+
+
+int main() {
+	Car A;// It will call default constructor
+	strcpy(A.name, "AUDI");
+	A.price = 100;
+	A.model = 2020;
+	A.seats = 4;
+
+	Car B("Maruti", 100, 2022, 7); // It will call parameterised constructor
+	// strcpy(B.name, "Maruti");
+	// B.price = 100;
+	// B.model = 2022;
+	// B.seats = 7;
+
+	// Calling copy constructor
+	Car C = B; // or Car D(C);
+
+	// C and A both are created already
+	C = A;// Yaha C create nhi ho rha, we are just updating the value of C
+
+
+	A.print();
+	B.print();
+	C.print();
+
+
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
