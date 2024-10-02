@@ -5,8 +5,8 @@ using namespace std;
 int main() {
 
 	vector<int>v(5);
-	// cout << "Size    : " << v.size() << endl; // 5
-	// cout << "Capacity: " << v.capacity() << endl; // 5
+	cout << "Size    : " << v.size() << endl; // 5
+	cout << "Capacity: " << v.capacity() << endl; // 5
 
 	for (int i = 0; i < v.size(); ++i)
 	{
