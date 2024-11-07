@@ -35,14 +35,13 @@ int bottomUp(int n, int k) {
 	return dp[n];
 }
 
-
 int nstairs(int n, int k) {
 	vi(dp, n, 0);
 
 	dp[0] = dp[1] = 1;
 	for (int i = 2; i <= n; ++i)
 	{
-		dp[i] = 2 * dp[i - 1] - ( (n - 1 - k) >= 0 ? dp[i - 1 - k] : 0);
+		dp[i] = 2 * dp[i - 1] - ( (i - 1 - k) >= 0 ? dp[i - 1 - k] : 0);
 	}
 
 	return dp[n];
