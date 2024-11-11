@@ -28,7 +28,6 @@ public:
 	void bfs(T src, unordered_map<T, bool> &visited) {
 		queue<T> q;
 
-
 		q.push(src);
 		visited[src] = true;
 
