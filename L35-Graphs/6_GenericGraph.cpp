@@ -25,6 +25,7 @@ public:
 		}
 	}
 
+	// Breadth first search
 	void bfs(T src) {
 		queue<T> q;
 		unordered_map<T, bool> visited;
@@ -86,6 +87,45 @@ public:
 		return distance[des_copy];
 
 	}
+
+
+	void bfs_helper(T src, unordered_map<T, bool> &visited) {
+		queue<T> q;
+
+
+		q.push(src);
+		visited[src] = true;
+
+		while (!q.empty()) {
+			auto t = q.front();
+			q.pop();
+			cout << t << " ";
+
+			for (auto child : adj[t]) {
+				if (!visited[child]) {
+					q.push(child);
+					visited[child] = true;
+				}
+			}
+		}
+		cout << endl;
+	}
+
+	void countComponents(T src) {
+		int component = 1;
+		unordered_map<T, bool> visited;
+		bfs_helper(src, visited);
+
+		for (auto p : adj) {
+			if (!visited[p.first]) {
+				bfs_helper(p.first, visited);
+				component++;
+			}
+		}
+
+		cout << "\nTotal components: " << component << endl;
+
+	}
 };
 
 int main() {
@@ -97,11 +137,15 @@ int main() {
 	g.addEdge(4, 3);
 	g.addEdge(5, 3);
 	g.addEdge(0, 4);
+	g.addEdge(6, 7);
+	g.addEdge(8, 7);
 
 	// g.print();
 	g.bfs(0);
 	int ans = g.SSSP(0, 5);
 	cout << "Distance : " << ans << endl;
+
+	g.countComponents(0);
 
 	/*
 	Graph<string> g;
