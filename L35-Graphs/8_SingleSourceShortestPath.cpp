@@ -25,27 +25,43 @@ public:
 		}
 	}
 
-	// Breadth first search
-	void bfs(T src) {
+	int SSSP(T src, T des) { // SSSP: Single Source Shortest Path
 		queue<T> q;
 		unordered_map<T, bool> visited;
+		unordered_map<T, T> parent;
+		unordered_map<T, int> distance;
 
 		q.push(src);
 		visited[src] = true;
+		parent[src] = src;
+		distance[src] = 0;
 
 		while (!q.empty()) {
 			auto t = q.front();
 			q.pop();
-			cout << t << " ";
 
 			for (auto child : adj[t]) {
 				if (!visited[child]) {
 					q.push(child);
+					parent[child] = t;
+					distance[child] = distance[t] + 1;
 					visited[child] = true;
 				}
 			}
 		}
-		cout << endl;
+
+		// Printing the shortest path
+		// des se shuru karo aur parent par jaate raho
+		T des_copy = des;
+
+		while (des != src) {
+			cout << des << "<--";
+			des = parent[des];
+		}
+		cout << des << endl;
+
+		return distance[des_copy];
+
 	}
 };
 
@@ -62,7 +78,8 @@ int main() {
 	g.addEdge(8, 7);
 
 	// g.print();
-	g.bfs(0);
+	int ans = g.SSSP(0, 5);
+	cout << "Distance : " << ans << endl;
 
 
 	/*

@@ -25,10 +25,9 @@ public:
 		}
 	}
 
-	// Breadth first search
-	void bfs(T src) {
+	void bfs(T src, unordered_map<T, bool> &visited) {
 		queue<T> q;
-		unordered_map<T, bool> visited;
+
 
 		q.push(src);
 		visited[src] = true;
@@ -47,6 +46,22 @@ public:
 		}
 		cout << endl;
 	}
+
+	void countComponents(T src) {
+		int component = 1;
+		unordered_map<T, bool> visited;
+		bfs(src, visited);
+
+		for (auto p : adj) {
+			if (!visited[p.first]) {
+				bfs(p.first, visited);
+				component++;
+			}
+		}
+
+		cout << "\nTotal components: " << component << endl;
+
+	}
 };
 
 int main() {
@@ -62,18 +77,9 @@ int main() {
 	g.addEdge(8, 7);
 
 	// g.print();
-	g.bfs(0);
+	g.countComponents(0);
 
 
-	/*
-	Graph<string> g;
-	g.addEdge("A", "B");
-	g.addEdge("D", "B");
-	g.addEdge("D", "C");
-	g.addEdge("D", "E");
-	g.addEdge("A", "C");
-	g.addEdge("A", "D");
-	*/
 
 
 	return 0;
